@@ -95,7 +95,7 @@ To run the included example, you must have [Node.js](https://nodejs.org/en/) ins
 - Then, run the example with the following command:
 
   ```bash
-  npx tsx example/imagine-ws.ts
+  npx tsx example/scott.ts
   ```
 
   OR
