@@ -4,7 +4,7 @@ import { Midjourney } from "../src";
  *
  * a simple example of using the imagine api with ws
  * ```
- * npx tsx example/imagine-ws.ts
+ * npx tsx example/scott.ts
  * ```
  */
 
@@ -34,37 +34,37 @@ async function main(prompt) {
   if (!Imagine) {
     return;
   }
-  // const reroll = await client.Reroll({
-  //   msgId: <string>Imagine.id,
-  //   hash: <string>Imagine.hash,
-  //   flags: Imagine.flags,
-  //   loading: (uri: string, progress: string) => {
-  //     console.log("Reroll.loading", uri, "progress", progress);
-  //   },
-  // });
+  const reroll = await client.Reroll({
+    msgId: <string>Imagine.id,
+    hash: <string>Imagine.hash,
+    flags: Imagine.flags,
+    loading: (uri: string, progress: string) => {
+      console.log("Reroll.loading", uri, "progress", progress);
+    },
+  });
 
-  // const Variation = await client.Variation({
-  //   index: 2,
-  //   msgId: <string>Imagine.id,
-  //   hash: <string>Imagine.hash,
-  //   flags: Imagine.flags,
-  //   loading: (uri: string, progress: string) => {
-  //     console.log("Variation.loading", uri, "progress", progress);
-  //   },
-  // });
+  const Variation = await client.Variation({
+    index: 2,
+    msgId: <string>Imagine.id,
+    hash: <string>Imagine.hash,
+    flags: Imagine.flags,
+    loading: (uri: string, progress: string) => {
+      console.log("Variation.loading", uri, "progress", progress);
+    },
+  });
 
-  // if (!Variation) {
-  //   return;
-  // }
-  // const Upscale = await client.Upscale({
-  //   index: 2,
-  //   msgId: <string>Variation.id,
-  //   hash: <string>Variation.hash,
-  //   flags: Variation.flags,
-  //   loading: (uri: string, progress: string) => {
-  //     console.log("Upscale.loading", uri, "progress", progress);
-  //   },
-  // });
+  if (!Variation) {
+    return;
+  }
+  const Upscale = await client.Upscale({
+    index: 2,
+    msgId: <string>Variation.id,
+    hash: <string>Variation.hash,
+    flags: Variation.flags,
+    loading: (uri: string, progress: string) => {
+      console.log("Upscale.loading", uri, "progress", progress);
+    },
+  });
 
   client.Close();
 }
@@ -91,7 +91,7 @@ const prompts = animals.map(animal =>
 );
 
 async function processPrompts() {
-  for (const prompt of prompts.slice(0, 10)) { // Slice to only handle the first 10 as an example
+  for (const prompt of prompts.slice(11, 31)) { // Slice to only handle the first 10 as an example
       await main(prompt);
   }
 }
