@@ -25,8 +25,8 @@ To run the included example, you must have [Node.js](https://nodejs.org/en/) ins
 1. clone the repository
 
    ```bash
-   git clone https://github.com/erictik/midjourney-client.git
-   cd midjourney-client
+   git clone https://github.com/aiB0ld/mj_api.git
+   cd mj_api
    ```
 
 2. install dependencies
