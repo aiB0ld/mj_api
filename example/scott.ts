@@ -16,7 +16,7 @@ import { Midjourney } from "../src";
 
 // export SERVER_ID="1302884522014019675"
 // export CHANNEL_ID="1302884522806870061"
-// export SALAI_TOKEN="MTE3MTY3MzAxODQzNTY0NTQ3Mg.Gu_y80.0QHjGj1PYBmdip1MKNr1Yf4XISd26o-HwZBQm0"
+// export SALAI_TOKEN="MTE3MTY3MzAxODQzNTY0NTQ3Mg.G0F0uF.ZG-uuizmVEzoi80OjUJQ_ABK5hlRAyzG6wOz2U"
 
 async function main(prompt) {
   console.log('prompt');
