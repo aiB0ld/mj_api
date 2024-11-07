@@ -5,12 +5,18 @@ import { Midjourney } from "../src";
  * a simple example of using the imagine api with ws
  * ```
  * npx tsx example/scott.ts
+ * 
+ * 
+ * How to find token
+ * 1. Inspect the discover page
+ * 2. In Application, click the discover.come under local_storage on the left side bar
+ * 3. search token
  * ```
  */
 
 // export SERVER_ID="1302884522014019675"
 // export CHANNEL_ID="1302884522806870061"
-// export SALAI_TOKEN="MTE3MTY3MzAxODQzNTY0NTQ3Mg.GJD9As.jPWYiO-G_gVIqTjgeYyRsjyRnUAxGvRYL8IYbQ"
+// export SALAI_TOKEN="MTE3MTY3MzAxODQzNTY0NTQ3Mg.Gu_y80.0QHjGj1PYBmdip1MKNr1Yf4XISd26o-HwZBQm0"
 
 async function main(prompt) {
   console.log('prompt');
@@ -34,14 +40,14 @@ async function main(prompt) {
   if (!Imagine) {
     return;
   }
-  const reroll = await client.Reroll({
-    msgId: <string>Imagine.id,
-    hash: <string>Imagine.hash,
-    flags: Imagine.flags,
-    loading: (uri: string, progress: string) => {
-      console.log("Reroll.loading", uri, "progress", progress);
-    },
-  });
+  // const reroll = await client.Reroll({
+  //   msgId: <string>Imagine.id,
+  //   hash: <string>Imagine.hash,
+  //   flags: Imagine.flags,
+  //   loading: (uri: string, progress: string) => {
+  //     console.log("Reroll.loading", uri, "progress", progress);
+  //   },
+  // });
 
   const Variation = await client.Variation({
     index: 2,
@@ -86,14 +92,27 @@ const animals = ["African Elephant", "Bengal Tiger", "Blue Whale", "Bald Eagle",
   "Bighorn Sheep", "Peacock", "Giant Anteater", "Clownfish", "Dugong", "Skunk", "Tree Frog",
   "Nile Monitor", "Yellowfin Tuna", "Bald Uakari"]
 
-const prompts = animals.map(animal => 
-  `a new creature that combined the strength of gene from zombie and ${animal} --seed 1591240234`
-);
+// Generate 2 prompts for each animal
+const prompts: string[] = animals.flatMap(animal => [
+  `${animal} and cabbage in one image. Cabbage on the left and ${animal} on the right. --ar 9:16`,
+  `a new and ridiculous and strong creature that combined the gene from cabbage and ${animal} --ar 9:16`
+]);
+
+// function getRandomPrompts(prompts: string[], count: number): string[] {
+//   // Shuffle the prompts array
+//   for (let i = prompts.length - 1; i > 0; i--) {
+//       const j = Math.floor(Math.random() * (i + 1));
+//       [prompts[i], prompts[j]] = [prompts[j], prompts[i]]; // Swap elements
+//   }
+//   // Return the first `count` items from the shuffled array
+//   return prompts.slice(0, count);
+// }
 
 async function processPrompts() {
-  for (const prompt of prompts.slice(11, 31)) { // Slice to only handle the first 10 as an example
-      await main(prompt);
-  }
+  // const randomPrompts = getRandomPrompts(prompts, 10); // Get 10 random prompts
+    for (const prompt of prompts) {
+        await main(prompt);
+    }
 }
 
 
